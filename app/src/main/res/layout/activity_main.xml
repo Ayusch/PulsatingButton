@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.ayusch.pulsatingbutton.PulsatingButton
+        android:id="@+id/pulsating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:buttonColor="@color/colorAccent"
+        app:horizontalOffset="200"
+        app:pulseDuration="500"
+        app:text="Hello there"
+        app:textColor="@color/colorPrimaryDark"
+        app:verticalOffset="40" />
+
+</RelativeLayout>
