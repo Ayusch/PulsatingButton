@@ -11,6 +11,10 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 import kotlinx.android.synthetic.main.pulsating_button.view.*
 
 
@@ -20,7 +24,7 @@ import kotlinx.android.synthetic.main.pulsating_button.view.*
  *
  */
 
-class PulsatingButton : LinearLayout {
+class PulsatingButton : LinearLayout,LifecycleObserver {
 
     private var buttonText: CharSequence? = ""
     private var textColor: Int = ContextCompat.getColor(context, android.R.color.black)
@@ -48,6 +52,7 @@ class PulsatingButton : LinearLayout {
     private fun init(context: Context?) {
         LayoutInflater.from(context).inflate(R.layout.pulsating_button, this, true)
         setColors()
+        (context as LifecycleOwner).lifecycle.addObserver(this)
         setText(buttonText)
     }
 
@@ -66,6 +71,7 @@ class PulsatingButton : LinearLayout {
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun startAnimation() {
         val animator = ValueAnimator.ofInt(0, verticalOffset)
         animator.repeatMode = ValueAnimator.REVERSE
@@ -137,6 +143,7 @@ class PulsatingButton : LinearLayout {
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun stopAnimation() {
         set.removeAllListeners()
         set.end()
