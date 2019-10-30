@@ -1,6 +1,7 @@
 # PulsatingButton
 A simple Android UI library to create a Growing and Shrinking button. It's pulse rate and size of pulse offset can be controlled.
-<img height = 20 width = 20 src=https://user-images.githubusercontent.com/18504765/67836177-e6ff0800-fb11-11e9-96ce-74575b0f9cff.gif >
+<br>
+<img height = 150 width = 150 src=https://user-images.githubusercontent.com/18504765/67836177-e6ff0800-fb11-11e9-96ce-74575b0f9cff.gif >
 
 
 # Usage:
