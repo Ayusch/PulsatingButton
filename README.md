@@ -1,18 +1,5 @@
 # PulsatingButton
 
-For Maven:
-
-<dependency>
-  <groupId>com.ayusch.pulsatingbutton</groupId>
-  <artifactId>pulsatingbutton</artifactId>
-  <version>1.0.0</version>
-  <type>pom</type>
-</dependency>
-
-For Gradle:
-
-implementation 'com.ayusch.pulsatingbutton:pulsatingbutton:1.0.0'
-
 Usage:
 
 XML:
@@ -41,5 +28,20 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+
+Download
+
+For Maven:
+
+<dependency>
+  <groupId>com.ayusch.pulsatingbutton</groupId>
+  <artifactId>pulsatingbutton</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+
+For Gradle:
+
+implementation 'com.ayusch.pulsatingbutton:pulsatingbutton:1.0.0'
 
 
