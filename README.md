@@ -3,7 +3,7 @@
 Usage:
 
 XML:
-
+```
     <com.ayusch.pulsatingbutton.PulsatingButton
         android:id="@+id/pulsating_button"
         android:layout_width="wrap_content"
@@ -15,10 +15,11 @@ XML:
         app:text="Submit"
         app:textColor="@android:color/white"
         app:verticalOffset="40" />
-
+```
 
 Kotlin:
 
+```
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,21 +28,22 @@ class MainActivity : AppCompatActivity() {
         pulsating_button.startAnimation()
     }
 }
+```
 
 
-Download
+# Download
 
 For Maven:
-
+```
 <dependency>
   <groupId>com.ayusch.pulsatingbutton</groupId>
   <artifactId>pulsatingbutton</artifactId>
   <version>1.0.0</version>
   <type>pom</type>
 </dependency>
-
+```
 For Gradle:
-
+```
 implementation 'com.ayusch.pulsatingbutton:pulsatingbutton:1.0.0'
-
+```
 
