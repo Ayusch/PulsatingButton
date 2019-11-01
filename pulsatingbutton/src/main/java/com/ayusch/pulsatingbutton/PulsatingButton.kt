@@ -33,20 +33,6 @@ class PulsatingButton @JvmOverloads constructor(
     private var animationDuration: Int = 1000
     val set = AnimatorSet()
 
-//    constructor(context: Context?) : super(context) {
-//        init(context)
-//    }
-//
-//    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-//        parseAttributes(context, attrs)
-//        init(context)
-//    }
-//
-//    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-//        parseAttributes(context, attrs)
-//        init(context)
-//    }
-
     init {
         attrs?.let {
             parseAttributes(context, it)
