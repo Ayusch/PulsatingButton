@@ -1,5 +1,5 @@
 # PulsatingButton
-A simple Android UI library to create a Growing and Shrinking button. It's pulse rate and size of pulse offset can be controlled.
+A simple Android UI library to create a Growing and Shrinking button. It's pulse rate and size of pulse offset can be controlled. For actual library go to: https://github.com/Ayusch/PulsatingButtonAndroidLibrary
 <br>
 <center><img height = 500 width = 250 src=https://user-images.githubusercontent.com/18504765/67836177-e6ff0800-fb11-11e9-96ce-74575b0f9cff.gif ></center>
 
@@ -42,13 +42,13 @@ For Maven:
 <dependency>
   <groupId>com.ayusch.pulsatingbutton</groupId>
   <artifactId>pulsatingbutton</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
 For Gradle:
 ```
-implementation 'com.ayusch.pulsatingbutton:pulsatingbutton:1.0.0'
+implementation 'com.ayusch.pulsatingbutton:pulsatingbutton:1.1.0'
 ```
 
 
