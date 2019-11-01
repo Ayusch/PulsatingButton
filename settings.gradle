@@ -1,2 +1,2 @@
-include ':pulsatingbutton'
+include ':app', ':pulsatingbutton'
 rootProject.name='PulsatingButtonDemo'
