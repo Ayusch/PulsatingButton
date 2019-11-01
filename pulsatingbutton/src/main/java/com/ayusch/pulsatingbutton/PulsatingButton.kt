@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.pulsating_button.view.*
  *
  */
 
-class PulsatingButton : LinearLayout {
+class PulsatingButton @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var buttonText: CharSequence? = ""
     private var textColor: Int = ContextCompat.getColor(context, android.R.color.black)
@@ -31,17 +33,10 @@ class PulsatingButton : LinearLayout {
     private var animationDuration: Int = 1000
     val set = AnimatorSet()
 
-    constructor(context: Context?) : super(context) {
-        init(context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        parseAttributes(context, attrs)
-        init(context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        parseAttributes(context, attrs)
+    init {
+        attrs?.let {
+            parseAttributes(context, it)
+        }
         init(context)
     }
 
@@ -52,14 +47,21 @@ class PulsatingButton : LinearLayout {
     }
 
     private fun parseAttributes(context: Context, attributes: AttributeSet) {
-        val attrs = context.theme.obtainStyledAttributes(attributes, R.styleable.PulsatingButton, 0, 0)
+        val attrs =
+            context.theme.obtainStyledAttributes(attributes, R.styleable.PulsatingButton, 0, 0)
         try {
             this.animationDuration = attrs.getInt(R.styleable.PulsatingButton_pulseDuration, 100)
             this.verticalOffset = attrs.getInt(R.styleable.PulsatingButton_verticalOffset, 4)
             this.horizontalOffset = attrs.getInt(R.styleable.PulsatingButton_horizontalOffset, 4)
             this.repeatCount = attrs.getInt(R.styleable.PulsatingButton_pulseCount, Int.MAX_VALUE)
-            this.buttonColor = attrs.getColor(R.styleable.PulsatingButton_buttonColor, ContextCompat.getColor(context, R.color.colorAccent))
-            this.textColor = attrs.getColor(R.styleable.PulsatingButton_textColor, ContextCompat.getColor(context, R.color.colorAccent))
+            this.buttonColor = attrs.getColor(
+                R.styleable.PulsatingButton_buttonColor,
+                ContextCompat.getColor(context, R.color.colorAccent)
+            )
+            this.textColor = attrs.getColor(
+                R.styleable.PulsatingButton_textColor,
+                ContextCompat.getColor(context, R.color.colorAccent)
+            )
             this.buttonText = attrs.getText(R.styleable.PulsatingButton_text)
         } finally {
             attrs.recycle()
@@ -67,27 +69,29 @@ class PulsatingButton : LinearLayout {
     }
 
     fun startAnimation() {
-        val animator = ValueAnimator.ofInt(0, verticalOffset)
-        animator.repeatMode = ValueAnimator.REVERSE
-        animator.interpolator = AccelerateDecelerateInterpolator()
-        animator.duration = animationDuration.toLong()
+        val verticalAnimator = ValueAnimator.ofInt(0, verticalOffset).apply {
+            repeatMode = ValueAnimator.REVERSE
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = animationDuration.toLong()
+        }
 
-        val animator2 = ValueAnimator.ofInt(0, horizontalOffset)
-        animator2.repeatMode = ValueAnimator.REVERSE
-        animator2.interpolator = AccelerateDecelerateInterpolator()
-        animator2.duration = animationDuration.toLong()
+        val horizontalAnimator = ValueAnimator.ofInt(0, horizontalOffset).apply {
+            repeatMode = ValueAnimator.REVERSE
+            interpolator = AccelerateDecelerateInterpolator()
+            duration = animationDuration.toLong()
+        }
 
-        val originalheight = button.layoutParams.height
+        val originalHeight = button.layoutParams.height
         val originalWidth = button.layoutParams.width
 
-        animator.addUpdateListener { valueAnimator ->
+        verticalAnimator.addUpdateListener { valueAnimator ->
             val params = button.layoutParams
             val animatedValue = valueAnimator.animatedValue as Int
-            params.height = (originalheight + animatedValue)
+            params.height = (originalHeight + animatedValue)
             button.layoutParams = params
         }
 
-        animator2.addUpdateListener { valueAnimator ->
+        horizontalAnimator.addUpdateListener { valueAnimator ->
             val params = button.layoutParams
             val animatedValue = valueAnimator.animatedValue as Int
             params.width = (originalWidth + animatedValue)
@@ -95,14 +99,14 @@ class PulsatingButton : LinearLayout {
         }
 
         if (repeatCount == Int.MAX_VALUE) {
-            animator.repeatCount = Animation.INFINITE
-            animator2.repeatCount = Animation.INFINITE
+            verticalAnimator.repeatCount = Animation.INFINITE
+            horizontalAnimator.repeatCount = Animation.INFINITE
         } else {
-            animator.repeatCount = repeatCount
-            animator2.repeatCount = repeatCount
+            verticalAnimator.repeatCount = repeatCount
+            horizontalAnimator.repeatCount = repeatCount
         }
 
-        set.playTogether(animator, animator2)
+        set.playTogether(verticalAnimator, horizontalAnimator)
         set.start()
     }
 
